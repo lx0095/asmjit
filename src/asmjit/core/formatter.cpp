@@ -38,7 +38,7 @@
   #include "../x86/x86formatter_p.h"
 #endif
 
-#ifdef ASMJIT_BUILD_ARM
+#if !defined(ASMJIT_NO_ARM)
   #include "../arm/armformatter_p.h"
 #endif
 
@@ -125,7 +125,7 @@ Error formatFeature(
     return x86::FormatterInternal::formatFeature(sb, featureId);
 #endif
 
-#ifdef ASMJIT_BUILD_ARM
+#if !defined(ASMJIT_NO_ARM)
   if (Environment::isFamilyARM(arch))
     return arm::FormatterInternal::formatFeature(sb, featureId);
 #endif
@@ -179,7 +179,7 @@ Error formatRegister(
     return x86::FormatterInternal::formatRegister(sb, formatFlags, emitter, arch, regType, regId);
 #endif
 
-#ifdef ASMJIT_BUILD_ARM
+#if !defined(ASMJIT_NO_ARM)
   if (Environment::isFamilyARM(arch))
     return arm::FormatterInternal::formatRegister(sb, formatFlags, emitter, arch, regType, regId);
 #endif
@@ -199,7 +199,7 @@ Error formatOperand(
     return x86::FormatterInternal::formatOperand(sb, formatFlags, emitter, arch, op);
 #endif
 
-#ifdef ASMJIT_BUILD_ARM
+#if !defined(ASMJIT_NO_ARM)
   if (Environment::isFamilyARM(arch))
     return arm::FormatterInternal::formatOperand(sb, formatFlags, emitter, arch, op);
 #endif
@@ -297,7 +297,7 @@ Error formatInstruction(
     return x86::FormatterInternal::formatInstruction(sb, formatFlags, emitter, arch, inst, operands, opCount);
 #endif
 
-#ifdef ASMJIT_BUILD_ARM
+#if !defined(ASMJIT_NO_ARM)
   if (Environment::isFamilyARM(arch))
     return arm::FormatterInternal::formatInstruction(sb, formatFlags, emitter, arch, inst, operands, opCount);
 #endif
