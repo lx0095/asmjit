@@ -78,7 +78,7 @@ ASMJIT_FAVOR_SIZE Error EmitHelper::emitRegMove(
           return emitter->ldr(dst.as<Vec>().d(), src);
 
         if (Type::isVec128(typeId))
-          return emitter->ldr(dst.as<Vec>().d(), src);
+          return emitter->ldr(dst.as<Vec>().q(), src);
 
         break;
       }
@@ -114,7 +114,7 @@ ASMJIT_FAVOR_SIZE Error EmitHelper::emitRegMove(
           return emitter->str(src.as<Vec>().d(), dst);
 
         if (Type::isVec128(typeId))
-          return emitter->str(src.as<Vec>().d(), dst);
+          return emitter->str(src.as<Vec>().q(), dst);
 
         break;
       }
