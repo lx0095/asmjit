@@ -676,8 +676,16 @@ public:
   //! \{
 
   //! Creates an uninitialized CodeHolder (you must init() it before it can be used).
-  ASMJIT_API CodeHolder() noexcept;
-  //! Destroys the CodeHolder.
+  //!
+  //! An optional `temporary` argument can be used to initialize the first block of \ref Zone that the CodeHolder
+  //! uses into a temporary memory provided by the user.
+  ASMJIT_API explicit CodeHolder(const Support::Temporary* temporary = nullptr) noexcept;
+
+  //! \overload
+  inline explicit CodeHolder(const Support::Temporary& temporary) noexcept
+    : CodeHolder(&temporary) {}
+
+  //! Destroys the CodeHolder and frees all resources it has allocated.
   ASMJIT_API ~CodeHolder() noexcept;
 
   //! Tests whether the `CodeHolder` has been initialized.

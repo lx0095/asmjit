@@ -116,12 +116,12 @@ static void CodeHolder_onSettingsUpdated(CodeHolder* self) noexcept {
 // CodeHolder - Construction & Destruction
 // =======================================
 
-CodeHolder::CodeHolder() noexcept
+CodeHolder::CodeHolder(const Support::Temporary* temporary) noexcept
   : _environment(),
     _baseAddress(Globals::kNoBaseAddress),
     _logger(nullptr),
     _errorHandler(nullptr),
-    _zone(16384 - Zone::kBlockOverhead),
+    _zone(16384 - Zone::kBlockOverhead, 1, temporary),
     _allocator(&_zone),
     _unresolvedLinkCount(0),
     _addressTableSection(nullptr) {}

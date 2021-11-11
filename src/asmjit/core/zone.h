@@ -89,8 +89,14 @@ public:
     _init(blockSize, blockAlignment, nullptr);
   }
 
+  //! Creates a new Zone with a first block pointing to a `temporary` memory.
   inline Zone(size_t blockSize, size_t blockAlignment, const Support::Temporary& temporary) noexcept {
     _init(blockSize, blockAlignment, &temporary);
+  }
+
+  //! \overload
+  inline Zone(size_t blockSize, size_t blockAlignment, const Support::Temporary* temporary) noexcept {
+    _init(blockSize, blockAlignment, temporary);
   }
 
   //! Moves an existing `Zone`.
