@@ -243,10 +243,6 @@ if (ASMJIT_SANITIZE)
   endif()
 endif()
 
-if (NOT WIN32)
-  list(APPEND ASMJIT_DEPS pthread)
-endif()
-
 if ("${CMAKE_SYSTEM_NAME}" MATCHES "Linux" OR "${CMAKE_SYSTEM_NAME}" MATCHES "NetBSD")
   list(APPEND ASMJIT_DEPS rt)
 endif()
@@ -487,6 +483,10 @@ if (NOT ASMJIT_EMBED)
                     CFLAGS     ${ASMJIT_PRIVATE_CFLAGS}
                     CFLAGS_DBG ${ASMJIT_PRIVATE_CFLAGS_DBG}
                     CFLAGS_REL ${ASMJIT_PRIVATE_CFLAGS_REL})
+
+  if (NOT WIN32)
+      target_compile_options(asmjit PUBLIC -pthread)
+  endif()
 
   target_compile_options(asmjit INTERFACE ${ASMJIT_CFLAGS})
   target_include_directories(asmjit BEFORE INTERFACE
